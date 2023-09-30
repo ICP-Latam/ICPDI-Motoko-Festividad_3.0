@@ -1,237 +1,173 @@
-// Importar las librerías necesarias
-//import C "mo:base/canister";
-//import C_id "mo:base/canister_id";
-//import D "mo:base/data";
-import Array "mo:base/Array";
 import Text "mo:base/Text";
-import EventStatus "mo:base/EventStatus";
-import Time "mo:base/Time";
-import Date "mo:base/Date";
+import Array "mo:base/Array";
+import Nat "mo:base/Nat";
+import D "mo:base/Debug";
+//import Identity "ic:canister/identity";
+import Principal "mo:base/Principal";
 
 
-// Definir el canister
-actor FesT30 {
-  
-  // Definir el tipo de usuario
-  type User = {
-    name: Text;
-    lastname: Text;
+actor FestividadCanister {
+
+  type Usuario = {
+    nombre: Text;
+    apellido: Text;
     email: Text;
-    password: Text;
-    verified: Text;
-    tipo: Text;
- };
+    tipo: Text; // "proveedor" o "cliente"
+    identidad: Principal; // Identidad de Internet Identity
+    //cuentaVerificada: Bool; // Indica si la cuenta del usuario está verificada
+  };
 
-var userlist : [User] = [];
+  type Evento = {
+    nombre: Text;
+    fecha: Text;
+    // Agrega aquí más campos de datos del evento según tus necesidades
+  };
 
- // Función para ingresar datos del usuario
-public func add_user({name; lastname; email; password;verified; tipo} : User): async Text{
-// Crear un nuevo usuario
-let user = {name= name; lastname= lastname; email= email; password= password; verified= verified; tipo= tipo};
+  var usuarios : [Usuario] = [];
+  var eventos : [Evento] = [];
 
-userlist := Array.append(userlist, [user]);
+  public func agregarUsuario({nombre; apellido; email; tipo; identidad} : Usuario) : async Text {
+    let usuario = {nombre = nombre; apellido = apellido; email = email; tipo = tipo; identidad = identidad};
+    usuarios := Array.append(usuarios, [usuario]);
+    return "Usuario agregado correctamente";
+  };
 
-return "User added";
-}
+
+
+  public func actualizarUsuario({nombre; apellido; email; tipo; identidad} : Usuario, indice: Nat) : async Text {
+    if (indice <= Array.size(usuarios)) {
+      return "Índice de usuario inválido";
+    };
+
+    //usuarios[nombre].indice := nombre;
+    /*usuarios[indice].apellido := apellido;
+    usuarios[indice].email := email;
+    usuarios[indice].tipo := tipo;
+    usuarios[indice].identidad := identidad;*/
+
+    return "Usuario actualizado correctamente";
+  };
 /*
-// Función auxiliar para obtener la lista de usuarios
-  public query func getAllUsers() : async [User] {
-  //Obtener la lista de usuarios
-    return userlist;
-  };
-
-
- // Función para verificar si el usuario es proveedor
-public func is_provider(user: User): async bool {
-   //Devuelve true si el tipo de usuario es proveedor
-  return user.tipo == "provider";
-};
-
-
-  // Definir el canister ID del administrador
- //canister_id! admin_canister_id = "admin";
- //canister_id! admin_canister_id = canister_id("admin");
-
-  
-*/
-  // Definir el tipo de evento
-  type Event = {
-    id: Text;
-    name: Text;
-    date: Text;
-    time: Text;
-    location: Text;
-    description: Text;
-    status: Text;
-  };
-  var eventlist : [Event] = [];
-/*
-  // Función para crear un evento
-  public func create_event({name; date; time; location; description;}: Event): async Text{
-    // Crear un nuevo evento
-    let event = {id= generate_id();name= name; date: date;time: time; location= location; description= description; status= EventStatus.Pending};
-
-    // Guardar el evento en la memoria
-    eventlist := Array.append(eventlist, [event]);
-
-    return "User added";
-  };
-  */
-/*
-   //Definir los posibles estados de un evento
-  enum  EventStatus {
-  Pending; Approved; Rejected
-  }
-
-
-   //Función auxiliar para obtener el evento
-  public func get_event(name: Text): Event {
-     //Obtener el evento de la memoria
-    return events[name];
-  };
-
-  // Función para verificar si el usuario es proveedor
-  public func is_provider(user: User): bool {
-    // Devuelve true si el tipo de usuario es proveedor
-    return user.type == "provider";
-  };
-
-  // Función para dar de baja al usuario
-  public func delete_user(email: Text): bool {
-  // Obtener el usuario de la memoria
-  var user = users[email];
-
-  // Si el usuario existe, eliminarlo
-  if (user != null) {
-    users.delete(email);
-    return true;
-  }
-
-  // Si el usuario no existe, devolver false
-  return false;
-  };
-
-  // Función para actualizar los datos del usuario
-  public func update_user(email, name, lastname, password): bool {
-  // Obtener el usuario de la memoria
-  var user = users[email];
-
-  // Si el usuario existe, actualizar sus datos
-  if (user != null) {
-    user.name = name;
-    user.lastname = lastname;
-    user.password = password;
-    users[email] = user;
-    return true;
-  }
-
-  // Si el usuario no existe, devolver false
-  return false;
-  };
-*/
-
-  
-/*
-  // Función para actualizar un evento
-  public func update_event(
-    id: Text,
-    name: Text,
-    date: Date,
-    time: Time,
-    location: Text,
-    description: Text
-  ): bool {
-    // Obtener el evento de la memoria
-    var event = get_event(id);
-
-    // Si el evento existe, actualizar sus datos
-    if (event != null) {
-      event.name = name;
-      event.date = date;
-      event.time = time;
-      event.location = location;
-      event.description = description;
-      events[id] = event;
-      return true;
+  public query func buscarUsuario(nombre: Text) : async [Usuario] {
+    var resultados : [Usuario] = [];
+    for (nombre in usuarios) {
+      if (usuarios.nombre == nombre) {
+        resultados := [usuarios];
+        break;
+      }
     }
+    return resultados;
+  };*/
 
-    // Si el evento no existe, devolver false
-    return false;
+  public func verificarCuentaUsuario(indice: Nat) : async Text {
+    if (indice >= Array.size(usuarios)) {
+      return "Índice de usuario inválido";
+    };
+
+    //usuarios[indice].cuentaVerificada := true;
+
+    return "Cuenta de usuario verificada correctamente";
   };
 
-  // Función para borrar un evento
-  public func delete_event(id: Text): bool {
-    // Obtener el evento de la memoria
-    var event = get_event(id);
 
-    // Si el evento existe, eliminarlo
-    if (event != null) {
-      events.delete(id);
-      return true;
-    }
-
-    // Si el evento no existe, devolver false
-    return false;
+  //EVENTOS
+  public func registrarDatosEvento({nombre; fecha} : Evento) : async Text {
+    let evento = {nombre = nombre; fecha = fecha};
+    eventos := Array.append(eventos, [evento]);
+    return "Datos del evento registrados correctamente";
   };
 
-  // Función para eliminar los datos del evento
-public func delete_event(id: Text): bool {
-  // Obtener el evento de la memoria
-  var event = events[id];
+  public func actualizarDatosEvento({nombre; fecha} : Evento, indice: Nat) : async Text {
+    if (indice >= Array.size(eventos)) {
+      return "Índice de evento inválido";
+    };
+/*
+    eventos[indice].nombre := nombre;
+    eventos[indice].fecha := fecha;*/
 
-  // Si el evento existe, eliminarlo
-  if (event != null) {
-    events.delete(id);
-    return true;
-  }
+    return "Datos del evento actualizados correctamente";
+  };
 
-  // Si el evento no existe, devolver false
-  return false;
-};
+public func autorizarEvento(indice: Nat) : async Text {
+    if (indice >= Array.size(eventos)) {
+      return "Índice de evento inválido";
+    };
 
-// Función para autorizar el evento
-public func authorize_event(id: Text): bool {
-  // Obtener el evento de la memoria
-  var event = events[id];
+    //Implementacion para autorizar el evento
 
-  // Si el evento existe y el usuario es proveedor, autorizarlo
-  if (event != null && is_provider(get_caller())) {
-    event.status = EventStatus.Approved;
-    return true;
-  }
+    return "Evento autorizado correctamente";
+  };
+/*
+  public func darDeBajaEvento(indice: Nat) : async Text {
+  if (indice >= Array.size(eventos)) {
+    return "Índice de evento inválido";
+  };
 
-  // Si el evento no existe o el usuario no es proveedor, devolver false
-  return false;
-};
+  eventos := Array.remove(eventos, indice);
 
-// Función para calendarizar el evento
-public func schedule_event(id: Text, date: Date, time: Time): bool {
-  // Obtener el evento de la memoria
-  var event = events[id];
-
-  // Si el evento existe, actualizar su fecha y hora
-  if (event != null) {
-    event.date = date;
-    event.time = time;
-    return true;
-  }
-
-  // Si el evento no existe, devolver false
-  return false;
-};
-
-// Función para pagar el evento
-public func pay_event(id: Text, amount: Nat): bool {
-  // Obtener el evento de la memoria
-  var event = events[id];
-
-  // Si el evento existe y el usuario es cliente, pagarlo
-  if (event != null && !is_provider(get_caller())) {
-    event.status = EventStatus.Paid;
-    return true;
-  }
-
-  // Si el evento no existe o el usuario no es cliente, devolver false
-  return false;
+  return "Evento dado de baja correctamente";
 };*/
 };
+  
+
+
+
+
+/*
+public query func buscarUsuario(nombre: Text) : async Text {
+    var resultados : [Usuario] = [];
+    for (nombre in usuarios) {
+        if (usuarios.nombre == nombre) {
+            usuarios := Array.append(usuarios, [usuario]);
+            return true;
+        }
+    }
+
+    return "hola";
+  };
+};
+
+  p*/
+/*
+public func buscarYEliminarEvento(nombre: Text) : async Text {
+    var eventoEncontrado = false;
+
+    for (i in Iter.range(0, Array.length(eventos))) {
+        if (evento.nombre == nombre) {
+            eventoEncontrado == true;
+            eventos := Array.remove(eventos, i);
+        if (eventoEncontrado) {
+          return "Evento eliminado";
+        } else {
+          return "Evento no encontrado";
+    }
+        }
+    }
+  
+
+  public func calendarizarEvento({nombre; fecha} : Evento) : async Text {
+    let evento = {nombre = nombre; fecha = fecha};
+    eventos := Array.append(eventos, [evento]);
+    return "Evento calendarizado correctamente";
+  };
+*//*
+  public func realizarPagoEvento(indice: Nat) : async Text {
+    if (indice >= Array.size(eventos)) {
+      return "Índice de evento inválido";
+    };
+
+    // Implementa aquí la lógica para realizar el pago del evento
+
+    return "Pago del evento realizado correctamente";
+  };*/
+/*
+  public query func buscarEvento(nombre: Text) : async [Evento] {
+    let resultados : [Evento] = [];
+    for (evento in eventos) {
+      if (evento.nombre == nombre) {
+        resultados := Array.append(resultados, [evento]);
+      }
+    }
+    
+  };
+*/
