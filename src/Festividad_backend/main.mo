@@ -43,16 +43,16 @@ actor FestividadCanister {
     return "Usuario actualizado correctamente";
   };
 
-  /*
-  public func EliminarUsuario(indice: Nat) : async Text {
-  if (indice >= Array.size(usuarios)) {
-    return "Índice de evento inválido";
-  };
-
-  eventos := Array.remove(eventos, indice);
-
-  return "Evento dado de baja correctamente";
-};*/
+  //pendiente
+  public func EliminarUsuario() : async Text {
+  /*if (indice >= Array.size(usuarios)) {
+    return "Índice de usuario inválido";
+  };*/
+  usuarios := [];
+  //D.print("Usuarios eliminados");
+    //return true;
+  return "Usuario eliminado correctamente";
+};
 
   public func verificarCuentaUsuario(indice: Nat) : async Text {
     if (indice >= Array.size(usuarios)) {
@@ -73,7 +73,7 @@ public query func buscarUsuarioPorIndice(indice: Nat) : async Text {
     return user.nombre;
 };
 
-/*public func identificacionUsuario():async Text {
+  public func identificacionUsuario(indice:Nat):async Text {
     if (indice >= Array.size(eventos)) {
       return "Usuario no identificado";
     };
@@ -81,7 +81,8 @@ public query func buscarUsuarioPorIndice(indice: Nat) : async Text {
     
     
   return "Usuario identificado";  
-  };*/
+  };
+
 
 
   //EVENTOS
@@ -93,26 +94,13 @@ public query func buscarUsuarioPorIndice(indice: Nat) : async Text {
 
   public func actualizarDatosEvento({nombre; fecha} : Evento, indice: Nat) : async Text {
     if (indice <= Array.size(eventos)) {
-      return "Índice de evento inválido";
+      return "Evento no identificado";
     };
 
     return "Datos del evento actualizados correctamente";
   };
 
-/*public func EliminarEvento(nombre: Text) : async Text {
-    var eventoEncontrado = false;
 
-    for (i in Iter.range(0, Array.length(eventos))) {
-        if (evento.nombre == nombre) {
-            eventoEncontrado == true;
-            eventos := Array.remove(eventos, i);
-        if (eventoEncontrado) {
-          return "Evento eliminado";
-        } else {
-          return "Evento no encontrado";
-    }
-        }
-    }*/
 
 public func autorizarEvento(indice: Nat) : async Text {
     if (indice >= Array.size(eventos)) {
@@ -124,6 +112,15 @@ public func autorizarEvento(indice: Nat) : async Text {
     return "Evento autorizado correctamente";
   };
 
+public func identificacionEvento(indice:Nat):async Text {
+    if (indice >= Array.size(eventos)) {
+      return "Usuario no identificado";
+    };
+    
+    
+  return "Evento identificado";  
+  };
+
   public query func buscarEvento(indice: Nat) : async Text {
     if (indice >= Array.size(eventos)) {
       return "Indice Invalido";
@@ -133,36 +130,35 @@ public func autorizarEvento(indice: Nat) : async Text {
     
   };
 
+  //pendiente
+  public func EliminarEvento() : async Text {
+  /*if (indice >= Array.size(eventos)) {
+    return "Índice de evento inválido";
+  };*/
+  eventos := [];
+  return "Evento eliminado correctamente";
 };
 
-/*
-public func identificacionEvento():async Text {
-    if (indice >= Array.size(eventos)) {
-      return "Usuario no identificado";
-    };
-    
-    
-    
-  return "Usuario identificado";  
-  };
-  
-
-  public func calendarizarEvento({nombre; fecha} : Evento) : async Text {
+public func calendarizarEvento({nombre; fecha} : Evento) : async Text {
     let evento = {nombre = nombre; fecha = fecha};
     eventos := Array.append(eventos, [evento]);
     return "Evento calendarizado correctamente";
-  };
-*//*
-  public func realizarPagoEvento(indice: Nat) : async Text {
+};
+
+//pendiente
+public func realizarPagoEvento(indice: Nat) : async Text {
     if (indice >= Array.size(eventos)) {
       return "Índice de evento inválido";
     };
 
-    // Implementa aquí la lógica para realizar el pago del evento
 
     return "Pago del evento realizado correctamente";
   };
+
+};
+
   
-*/
+  
+
 
   
