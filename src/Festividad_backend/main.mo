@@ -134,6 +134,7 @@ public func identificacionEvento(indice:Nat):async Text {
   return "Evento identificado";  
   };
 
+//pendiente por perfeccionar
   public query func buscarEvento(indice: Nat) : async Text {
     if (indice >= Array.size(eventos)) {
       return "Indice Invalido";
