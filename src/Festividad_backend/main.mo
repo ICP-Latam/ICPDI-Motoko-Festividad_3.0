@@ -107,6 +107,28 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
 //var eventos : [Evento] = [];
 let eventos = HashMap.HashMap<Text, Evento>(0, Text.equal, Text.hash);
 
+//Autorizar y buscar eventos
+public func autorizarEvento(id:Text):async Text {
+    let event: ?Evento = eventos.get(id);
+  if (event != null) {
+  return "Evento autorizado correctamente";
+} else {
+  return "Evento no autorizado";
+}
+  };
+
+  public query func buscarEventos () : async [(Text, Evento)]{
+    let eventIter : Iter.Iter<(Text, Evento)> = eventos.entries();
+		let eventArray : [(Text, Evento)] = Iter.toArray(eventIter);
+    return eventArray;
+
+	};
+
+public query func buscarEventosid (id: Text) : async ?Evento {
+		let event: ?Evento = eventos.get(id);
+		return event;
+	};
+
   public func calendarizacionEvento(id:Text):async Text {
     let event: ?Evento = eventos.get(id);
   if (event != null) {
