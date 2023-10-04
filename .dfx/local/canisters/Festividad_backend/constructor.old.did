@@ -9,11 +9,31 @@ type Usuario =
    telefono: int;
    tipo: text;
  };
+type Evento = 
+ record {
+   descripcion: text;
+   fecha: text;
+   hora: text;
+   nombre: text;
+   precio: int;
+   reservacion: int;
+ };
 service : {
+  actualizarUsuario: (text, nat, text, text, text, int, text, text, text,
+   principal) -> (bool);
+  autorizarEvento: (text) -> (text);
+  buscarEventos: () -> (vec record {
+                              text;
+                              Evento;
+                            }) query;
+  buscarEventosid: (text) -> (opt Evento) query;
   buscarUsuarios: () -> (vec record {
                                text;
                                Usuario;
                              }) query;
   buscarUsuariosid: (text) -> (opt Usuario) query;
+  calendarizacionEvento: (text) -> (text);
   crearUsuario: (Usuario) -> (text);
+  pagoEvento: (text) -> (text);
+  verificarCuentaUsuario: (text) -> (text);
 }
