@@ -19,6 +19,7 @@ type Evento =
    reservacion: int;
  };
 service : {
+  actualizarEvento: (text, text, int, int, text, text, text) -> (bool);
   actualizarUsuario: (text, nat, text, text, text, int, text, text, text,
    principal) -> (bool);
   autorizarEvento: (text) -> (text);
@@ -33,7 +34,9 @@ service : {
                              }) query;
   buscarUsuariosid: (text) -> (opt Usuario) query;
   calendarizacionEvento: (text) -> (text);
+  crearEvento: (Evento) -> (text);
   crearUsuario: (Usuario) -> (text);
+  identificacionEvento: (text) -> (text);
   pagoEvento: (text) -> (text);
   verificarCuentaUsuario: (text) -> (text);
 }
