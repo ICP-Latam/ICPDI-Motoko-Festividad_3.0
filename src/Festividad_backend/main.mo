@@ -89,6 +89,17 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
 }
   };
 
+  public func calendarizacionEvento(id:Text):async Text {
+    let event: ?Evento = eventos.get(id);
+  if (event != null) {
+  return "Evento calendarizado";
+} else {
+  return "Evento no existente";
+}
+  
+  };
+
+
 public func pagoEvento(id:Text):async Text {
     let event: ?Evento = eventos.get(id);
   if (event != null) {
