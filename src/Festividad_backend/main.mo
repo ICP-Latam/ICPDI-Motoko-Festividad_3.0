@@ -69,8 +69,8 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
         return false;
       };
       case (?currentuser) {
-        let newuser: Usuario = {nombre = nombre; apellidop = apellidop; apellidom = apellidom; telefono = telefono; redesS = redesS; email = email; tipo = tipo; identidad = identidad};
-        usuarios.put(id,newuser);
+        let user: Usuario = {nombre = nombre; apellidop = apellidop; apellidom = apellidom; telefono = telefono; redesS = redesS; email = email; tipo = tipo; identidad = identidad};
+        usuarios.put(id,user);
         //Debug.print("Updated post with ID: " # id);
         return true;
       };
@@ -124,14 +124,14 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
   };
 
   public func actualizarEvento(nombre : Text, descripcion : Text, precio : Int, reservacion : Int, fecha : Text, hora : Text, id : Text) : async Bool {
-    let user : ?Evento = eventos.get(id);
+    let event : ?Evento = eventos.get(id);
 
-    switch (user) {
+    switch (event) {
       case (null) {
         return false;
       };
       case (?currentevent) {
-        let newevent : Evento = {
+        let event : Evento = {
           nombre = nombre;
           descripcion = descripcion;
           precio = precio;
@@ -139,7 +139,7 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
           fecha = fecha;
           hora = hora;
         };
-        eventos.put(id, newevent);
+        eventos.put(id, event);
         //Debug.print("Updated post with ID: " # id);
         return true;
       };
