@@ -107,10 +107,9 @@ public func pagoEvento(id:Text):async Text {
 } else {
   return "Pago no realizado por indice invalido";
 }
-
-  
-
   };
+
+};
 
 
 
