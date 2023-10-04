@@ -1,0 +1,19 @@
+type Usuario = 
+ record {
+   apellidom: text;
+   apellidop: text;
+   email: text;
+   identidad: principal;
+   nombre: text;
+   redesS: text;
+   telefono: int;
+   tipo: text;
+ };
+service : {
+  buscarUsuarios: () -> (vec record {
+                               text;
+                               Usuario;
+                             }) query;
+  buscarUsuariosid: (text) -> (opt Usuario) query;
+  crearUsuario: (Usuario) -> (text);
+}
