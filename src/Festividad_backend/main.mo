@@ -89,7 +89,13 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
 }
   };
 
-
+public func pagoEvento(id:Text):async Text {
+    let event: ?Evento = eventos.get(id);
+  if (event != null) {
+  return "Pago realizado correctamente";
+} else {
+  return "Pago no realizado por indice invalido";
+}
 
   
 
