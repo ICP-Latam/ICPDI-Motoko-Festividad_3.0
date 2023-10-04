@@ -113,4 +113,3 @@ public func pagoEvento(id:Text):async Text {
 
 
 
-};
