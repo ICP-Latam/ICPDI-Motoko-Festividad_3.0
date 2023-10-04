@@ -89,6 +89,24 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
 }
   };
 
+
+ type Evento = {
+    nombre: Text;
+    descripcion: Text;
+    precio: Int;
+    reservacion: Int;
+    fecha: Text;
+    hora: Text;
+  };
+
+  private func generateIEvent() : Nat {
+		indice += 1;
+		return indice;
+	};
+
+//var eventos : [Evento] = [];
+let eventos = HashMap.HashMap<Text, Evento>(0, Text.equal, Text.hash);
+
   public func calendarizacionEvento(id:Text):async Text {
     let event: ?Evento = eventos.get(id);
   if (event != null) {
