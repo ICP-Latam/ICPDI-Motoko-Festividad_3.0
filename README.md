@@ -60,7 +60,7 @@ Lo que iniciará un servidor en `http://localhost:8080`, enviando solicitudes de
 
 Si aloja código de interfaz en algún lugar sin utilizar DFX, es posible que deba realizar uno de los siguientes ajustes para garantizar que su proyecto no obtenga la clave raíz en producción:
 
-- establezca `DFX_NETWORK` en `ic` si está utilizando Webpack
-- utilice su propio método preferido para reemplazar `process.env.DFX_NETWORK` en las declaraciones generadas automáticamente
+- Establezca `DFX_NETWORK` en `ic` si está utilizando Webpack
+- Utilice su propio método preferido para reemplazar `process.env.DFX_NETWORK` en las declaraciones generadas automáticamente
   - Configurar `contenedores -> {asset_canister_id} -> declaraciones -> env_override en una cadena` en `dfx.json` reemplazará `process.env.DFX_NETWORK` con la cadena en las declaraciones generadas automáticamente
 - Escribe tu propio constructor `createActor`
