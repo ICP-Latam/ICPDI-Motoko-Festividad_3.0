@@ -1,4 +1,4 @@
-# Festividad
+# Festividad 3.0
 
 Bienvenido a tu nuevo proyecto Festividad y a la comunidad de desarrollo informático en Internet. De forma predeterminada, al crear un nuevo proyecto se agrega este archivo README y algunos archivos de plantilla al directorio de su proyecto. Puede editar estos archivos de plantilla para personalizar su proyecto e incluir su propio código para acelerar el ciclo de desarrollo.
 
