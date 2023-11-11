@@ -1,27 +1,27 @@
 {
   "canisters": {
-    "Festividad_backend": {
-      "main": "src/Festividad_backend/main.mo",
+    "FESTIVIDAD_backend": {
+      "main": "src/FESTIVIDAD_backend/main.mo",
       "type": "motoko"
+    },
+    "FESTIVIDAD_frontend": {
+      "dependencies": [
+        "FESTIVIDAD_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/FESTIVIDAD_frontend/src/index.html"
+      },
+      "source": [
+        "src/FESTIVIDAD_frontend/assets",
+        "dist/FESTIVIDAD_frontend/"
+      ],
+      "type": "assets"
     }
   },
   "defaults": {
     "build": {
       "args": "",
       "packtool": ""
-    },
-    "assets": {
-      "dependencies": [
-        "internet_identity",
-        "Festividad_backend"
-      ],
-      "frontend": {
-        "entrypoint": "dist/index.html"
-      },
-      "source": [
-        "dist/"
-      ],
-      "type": "assets"
     }
   },
   "output_env_file": ".env",
