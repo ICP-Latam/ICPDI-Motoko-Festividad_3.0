@@ -19,31 +19,28 @@ import React from "react";
 
 
 // reactstrap components
-//import { Container } from "reactstrap";
+import { Container } from "reactstrap";
 //import Slider from "../Slider/Slider";
 
-const PageHeader=() =>{
+export function PageHeader() {
 
   return (
-    <div className="flex items-center justify-center flex-col p-4 w-full">
-    {/* Create post section */}
-    <form >
-        <div className="flex flex-col items-center border mt-4 border-gray-500 p-5 space-x-2 w-96">
-            <div className="flex flex-col space-y-2 w-full">
-                <label htmlFor="message">What are you thinking about?</label>
-                <input id="message" required className="border border-gray-500 px-2" type="text"/>
-                <button type="submit" className="w-full p-2 rounded-sm bg-gray-950 hover:bg-gray-900 text-white text-lg font-bold">Create</button>
-            </div>
-            
+    <div className="page-header header-filter">
+    <Container>
+      <div className="content-center ">
+        <Slider></Slider>
+      </div>
+        <div className="content-center brand">
+          <h1 className="h1-seo">Festividad 3.0</h1>
+          <h3 className="d-none d-sm-block">
+            Una plataforma a tu alcance, fácil de manipular,
+            una gran variedad de productos y servicios para tus eventos.
+          </h3>
         </div>
-    </form>
+        
+      </Container>
 
 </div>
-      
-      
-      
-    
+  
   );
 }
-
-export default {PageHeader};

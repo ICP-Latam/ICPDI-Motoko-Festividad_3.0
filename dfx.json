@@ -20,7 +20,7 @@
         "FESTIVIDAD_backend"
       ],
       "frontend": {
-        "entrypoint": "FESTIVIDAD_frontend/index.html"
+        "entrypoint": "src/FESTIVIDAD_frontend/index.html"
       },
       "source": [
         "src/FESTIVIDAD_frontend/"

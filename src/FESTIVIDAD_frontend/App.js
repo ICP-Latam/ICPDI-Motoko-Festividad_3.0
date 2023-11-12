@@ -1,3 +1,5 @@
+import logo from './logo.svg';
+import './App.css';
 
 
 import { defaultProviders } from "@connect2ic/core/providers"
@@ -6,23 +8,28 @@ import { Connect2ICProvider } from "@connect2ic/react"
 import "@connect2ic/core/style.css"
 
 import * as backend from "../declarations/FESTIVIDAD_backend"
-import PageHeader from "./components/PageHeader"
+import PageHeader from "./components/PageHeader.jsx"
 
 function App() {
-
-    return (
-      <div className="min-h-screen">
-        <header className="relative flex justify-start items-center p-4 border-b border-gray-600">
-          <img src={logo} width="80" alt="logo" />
-          <div className="absolute top-2 right-2">
-            <ConnectButton />
-          </div>
-        </header>
-        <ConnectDialog />
-        <PageHeader/>
-      </div>
-    )
-  }
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
 
 const client = createClient({
     canisters: {
