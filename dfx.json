@@ -4,16 +4,26 @@
       "main": "src/FESTIVIDAD_backend/main.mo",
       "type": "motoko"
     },
-    "FESTIVIDAD_frontend": {
+    "internet_identity": {
+      "type": "custom",
+      "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz",
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+        }
+      }
+    },
+    "assets": {
       "dependencies": [
+        "internet_identity",
         "FESTIVIDAD_backend"
       ],
       "frontend": {
-        "entrypoint": "src/FESTIVIDAD_frontend/src/index.html"
+        "entrypoint": "FESTIVIDAD_frontend/index.html"
       },
       "source": [
-        "src/FESTIVIDAD_frontend/assets",
-        "dist/FESTIVIDAD_frontend/"
+        "src/FESTIVIDAD_frontend/"
       ],
       "type": "assets"
     }
