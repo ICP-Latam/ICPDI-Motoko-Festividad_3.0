@@ -62,7 +62,7 @@ actor FestividadCanister {
   };
 
   
-public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text, apellidom:Text, telefono:Text, redesS:Text, email:Text, tipo:Text) : async Bool {
+public func actualizarUsuario (id:Text, nombre:Text, apellidop:Text, apellidom:Text, telefono:Text, redesS:Text, email:Text, tipo:Text) : async Bool {
     let user: ?Usuario= usuarios.get(id);
 
     switch (user) {
@@ -72,7 +72,7 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
       case (?currentuser) {
         let user: Usuario = {nombre = nombre; apellidop = apellidop; apellidom = apellidom; telefono = telefono; redesS = redesS; email = email; tipo = tipo};
         usuarios.put(id,user);
-        //Debug.print("Updated post with ID: " # id);
+        D.print("Ha sido actualizado el usuario con id: " # id);
         return true;
       };
     };
@@ -106,10 +106,10 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
 
 
   type Evento = {
-    nombre: Text;
+    nombreEv: Text;
     descripcion: Text;
-    precio: Int;
-    reservacion: Int;
+    precio: Text;
+    reservacion: Text;
     fecha: Text;
     hora: Text;
   };
@@ -122,9 +122,9 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
   //var eventos : [Evento] = [];
   let eventos = HashMap.HashMap<Text, Evento>(0, Text.equal, Text.hash);
 
-  public func crearEvento({ nombre; descripcion; precio; reservacion; fecha; hora } : Evento) : async Text {
+  public func crearEvento(nombreEv:Text, descripcion:Text, precio:Text, reservacion:Text, fecha:Text, hora:Text) : async () {
     let postevent = {
-      nombre = nombre;
+      nombreEv = nombreEv;
       descripcion = descripcion;
       precio = precio;
       reservacion = reservacion;
@@ -135,10 +135,11 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
     let clave = Nat.toText(generateIEvent());
     eventos.put(clave, postevent);
     //identidad: Principal; // Identidad de Internet Identity
-    return "Usuario agregado correctamente";
+    D.print("Nuevo Evento Creado: " # nombreEv);
+    return ();
   };
 
-  public func actualizarEvento(nombre : Text, descripcion : Text, precio : Int, reservacion : Int, fecha : Text, hora : Text, id : Text) : async Bool {
+  public func actualizarEvento(nombreEv : Text, descripcion : Text, precio : Text, reservacion : Text, fecha : Text, hora : Text, id : Text) : async Bool {
     let event : ?Evento = eventos.get(id);
 
     switch (event) {
@@ -147,7 +148,7 @@ public func actualizarUsuario (id:Text, indice:Nat, nombre:Text, apellidop:Text,
       };
       case (?currentevent) {
         let event : Evento = {
-          nombre = nombre;
+          nombreEv = nombreEv;
           descripcion = descripcion;
           precio = precio;
           reservacion = reservacion;

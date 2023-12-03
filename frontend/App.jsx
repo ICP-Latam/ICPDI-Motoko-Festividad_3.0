@@ -4,19 +4,16 @@ import logo from "./assets/dfinity.svg"
  * Connect2ic provides essential utilities for IC app development
  */
 import { createClient } from "@connect2ic/core"
-import { defaultProviders } from "@connect2ic/core/providers"
 import { InternetIdentity } from "@connect2ic/core/providers/internet-identity"
 import { ConnectButton, ConnectDialog, Connect2ICProvider } from "@connect2ic/react"
 import "@connect2ic/core/style.css"
 /*
  * Import canister definitions like this:
  */
-import * as counter from "../.dfx/local/canisters/counter"
 import * as Festividad_backend from "../.dfx/local/canisters/Festividad_backend"
 /*
  * Some examples to get you started
  */
-import { Counter } from "./components/Counter"
 import { Transfer } from "./components/Transfer"
 import { Profile } from "./components/Profile"
 
@@ -37,7 +34,6 @@ function App() {
       </p>
       <div className="examples">
         <Festividad />
-        <Counter />
         <Profile />
         <Transfer />
       </div>
@@ -48,7 +44,6 @@ function App() {
 
 const client = createClient({
   canisters: {
-    counter,
     Festividad_backend
   },
   providers: [

@@ -1,8 +1,16 @@
 import { useCanister } from '@connect2ic/react';
 import React, { useEffect, useState } from 'react';
 
+import  FestividadItemUsr  from "./FestividadItemUsr";
+import  FestividadItemEv  from "./FestividadItemEv";
+
 function Festividad() {
     const [Festividad_backend] = useCanister("Festividad_backend");
+
+    let [id,setid]= useState('');
+
+    const [usuarios, setUsuarios] = useState([]);
+    const [eventos, setEventos] = useState([]);
 
     const [nombre,setnombre] = useState('')
     const [apellidop,setapellidop] = useState('')
@@ -11,18 +19,23 @@ function Festividad() {
     const [redesS,setredesS] = useState('')
     const [email,setemail] = useState('')
     const [tipo,settipo] = useState('')
+
+    const [nombreEv,setnombreEv] = useState('')
+    const [descripcion,setdescripcion] = useState('')
+    const [precio,setprecio] = useState('')
+    const [reservacion,setreservacion] = useState('')
+    const [fecha,setfecha] = useState('')
+    const [hora,sethora] = useState('')
+
     
    /* useEffect(()=>{
 
     })*/
 
 
-    const handleSubmit = async (e) =>{
+    const handleSubmitUsr = async (e) =>{
         e.preventDefault();
-       
         try{
-         
-
             const result = await Festividad_backend.crearUsuario(
                 nombre,
                 apellidop,
@@ -38,12 +51,48 @@ function Festividad() {
         
     }
 
+    const handleSubmitEv = async (e) =>{
+        e.preventDefault();
+        try{
+            const result = await Festividad_backend.crearEvento(
+                nombreEv,
+                descripcion,
+                precio,
+                reservacion,
+                fecha,
+                hora)
+            console.log(result)
+        }catch(error){
+            console.error(error)
+        }
+        
+    }
+
+    const handleBuscarUsr = async () => {
+        try {
+            const result = await Festividad_backend.buscarUsuarios();
+            setUsuarios(result.sort((a, b) => parseInt(a[0]) - parseInt(b[0])));  // Ordenar posts por ID
+
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
+    const handleBuscarEv = async () => {
+        try {
+            const result = await Festividad_backend.buscarEventos();
+            setEventos(result.sort((a, b) => parseInt(a[0]) - parseInt(b[0])));  // Ordenar posts por ID
+
+        } catch(e) {
+            console.log(e);
+        }
+    }
 
 
 
   return (
     <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitUsr}>
         <div>
         <br></br><label>Registrar Usuario</label>
         <br></br><br></br><label>Introduce el nombre</label>
@@ -64,6 +113,42 @@ function Festividad() {
         </div>
         </form>
 
+
+        {/* Actualizar y Eliminar Usuario */}
+        <div>
+                <button onClick={handleBuscarUsr}>Buscar Usuarios</button>
+                {usuarios.map((usuario) => {
+                    return(<FestividadItemUsr key={usuario[0]} usuario={usuario} refresh={handleBuscarUsr} />);
+                })}
+        </div>
+       
+
+        <form onSubmit={handleSubmitEv}>
+        <div>
+        <br></br><label>Registrar Evento</label>
+        <br></br><br></br><label>Introduce el nombre</label>
+        <br></br><input id="nombreEv" placeholder='Nombre' value={nombreEv} onChange={(e) => setnombreEv(e.target.value)}/>
+        <br></br><label>Introduce la descripcion</label>
+        <br></br><input id="descripcion" placeholder='Descripcion' value={descripcion} onChange={(e) => setdescripcion(e.target.value)}/>
+        <br></br><label>Introduce el precio</label>
+        <br></br><input id="precio" placeholder='Precio' value={precio} onChange={(e) => setprecio(e.target.value)}/>
+        <br></br><label>Introduce el numero de reservaciones</label>
+        <br></br><input id="reservacion" placeholder='Reservacion' value={reservacion} onChange={(e) => setreservacion(e.target.value)}/>
+        <br></br><label>Introduce la fecha</label>
+        <br></br><input id="fecha" placeholder='Fecha' value={fecha} onChange={(e) => setfecha(e.target.value)}/>
+        <br></br><label>Introduce la hora</label>
+        <br></br><input id="hora" placeholder='Hora' value={hora} onChange={(e) => sethora(e.target.value)}/>
+        <br></br><br></br><button type="submit">Enviar</button>
+        </div>
+        </form>
+
+        {/* Actualizar y Eliminar Usuario */}
+        <div>
+                <button onClick={handleBuscarEv}>Buscar Eventos</button>
+                {eventos.map((Evento) => {
+                    return(<FestividadItemEv key={Evento[0]} Evento={Evento} refresh={handleBuscarEv} />);
+                })}
+        </div>
 
     </div>
   )
