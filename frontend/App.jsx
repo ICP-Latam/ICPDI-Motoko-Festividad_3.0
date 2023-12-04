@@ -17,7 +17,8 @@ import * as Festividad_backend from "../.dfx/local/canisters/Festividad_backend"
 import { Transfer } from "./components/Transfer"
 import { Profile } from "./components/Profile"
 
-import  Festividad  from "./components/Festividad"
+//import  Festividad  from "./components/Festividad"
+import  FormModal  from "./components/FormModal"
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
         
       </p>
       <div className="examples">
-        <Festividad />
+        <FormModal />
         <Profile />
         <Transfer />
       </div>

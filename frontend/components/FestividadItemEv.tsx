@@ -68,7 +68,7 @@ function FestividadItemEv (props) {
         <br></br><input id="fecha" placeholder='Fecha' value={fecha} onChange={(e) => setfecha(e.target.value)}/>
         <br></br><label>Introduce la hora</label>
         <br></br><input id="hora" placeholder='Hora' value={hora} onChange={(e) => sethora(e.target.value)}/>
-        <button onClick={handleUpdateEv}>Actualizar</button>
+        <br></br><br></br><button onClick={handleUpdateEv}>Actualizar</button>
         </div>
 
         <div>

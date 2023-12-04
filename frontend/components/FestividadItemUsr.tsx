@@ -72,7 +72,7 @@ function FestividadItemUsr (props) {
         <br></br><input id="email" placeholder='Correo' value={email} onChange={(e) => setemail(e.target.value)}/>
         <br></br><label>Introduce el tipo de usuario</label>
         <br></br><input id="tipo" placeholder='Tipo' value={tipo} onChange={(e) => settipo(e.target.value)}/>
-        <button onClick={handleUpdateUsr}>Actualiar</button>
+        <br></br><br></br><button onClick={handleUpdateUsr}>Actualizar</button>
         </div>
 
         <div>

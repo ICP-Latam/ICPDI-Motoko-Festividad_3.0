@@ -4,3 +4,6 @@ dist
 dist-ssr
 *.local
 .dfx
+
+package.json
+package-lock.json

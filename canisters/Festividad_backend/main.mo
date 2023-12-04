@@ -139,7 +139,7 @@ public func actualizarUsuario (id:Text, nombre:Text, apellidop:Text, apellidom:T
     return ();
   };
 
-  public func actualizarEvento(nombreEv : Text, descripcion : Text, precio : Text, reservacion : Text, fecha : Text, hora : Text, id : Text) : async Bool {
+  public func actualizarEvento(id : Text, nombreEv : Text, descripcion : Text, precio : Text, reservacion : Text, fecha : Text, hora : Text) : async Bool {
     let event : ?Evento = eventos.get(id);
 
     switch (event) {
