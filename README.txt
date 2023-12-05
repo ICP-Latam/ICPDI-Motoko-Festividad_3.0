@@ -6,7 +6,7 @@ Se sabe que la ola de la web 2.0 todavía se está desarrollando, aún así vemo
 
 El siguiente sistema consiste en una plataforma online enfocada a la web 3.0 para ofrecer servicios y productos referente a eventos festivos donde las personas que se dediquen a organizar este tipo de eventos puedan encontrar todo lo que lleguen a requerir para los mismos, de igual manera personas que se dediquen a brindar cualquier tipo de producto o servicio podrán tener la oportunidad de anunciarse y de ser contactados por algún cliente que requiera de alguno de ellos.
 
-@@ -32,7 +34,7 @@ Si desea probar su proyecto localmente, puede utilizar los siguientes comandos:
+Si desea probar su proyecto localmente, puede utilizar los siguientes comandos:
 # Inicia la réplica, ejecutándose en segundo plano.
 dfx start --background
 
