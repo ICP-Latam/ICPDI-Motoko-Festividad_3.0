@@ -7,6 +7,8 @@ import { createClient } from "@connect2ic/core"
 import { InternetIdentity } from "@connect2ic/core/providers/internet-identity"
 import { ConnectButton, ConnectDialog, Connect2ICProvider } from "@connect2ic/react"
 import "@connect2ic/core/style.css"
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+
 /*
  * Import canister definitions like this:
  */
@@ -18,12 +20,26 @@ import { Transfer } from "./components/Transfer"
 import { Profile } from "./components/Profile"
 
 //import  Festividad  from "./components/Festividad"
-import  FormModal  from "./components/FormModal"
+import  User  from "./components/FormModalUser"
+import  Eventos  from "./components/FormModalEvent"
+import  Menu  from "./components/Menu"
+import  Home  from "./components/Principal"
 
 function App() {
 
   return (
+    
     <div className="App">
+      <BrowserRouter>
+      <Menu />
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/usuario" element={<User/>} />
+        <Route path="/eventos" element={<Eventos/>} />
+        <Route path="*" element={<Navigate to="/" replace />}/>
+      </Routes>
+      
+    </BrowserRouter>
 
       <div className="auth-section">
         <ConnectButton />
@@ -34,9 +50,10 @@ function App() {
         
       </p>
       <div className="examples">
-        <FormModal />
-        <Profile />
-        <Transfer />
+      
+      
+        
+
       </div>
 
     </div>

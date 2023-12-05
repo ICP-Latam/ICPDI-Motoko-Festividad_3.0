@@ -1,6 +1,6 @@
 import { useCanister } from "@connect2ic/react";
 import React, { useState } from "react";
-
+import './estilos.css';
 
 
 function FestividadItemUsr (props) {
@@ -57,28 +57,28 @@ function FestividadItemUsr (props) {
   return (
     <div>
         <div>
-        <br></br><label>Actualizar Usuario</label>
-        <br></br><br></br><label>Introduce el nombre</label>
-        <br></br><input id="nombre" placeholder='Nombre' value={nombre} onChange={(e) => setnombre(e.target.value)}/>
-        <br></br><label>Introduce el Apellido Paterno</label>
-        <br></br><input id="apellidop" placeholder='Apellido Paterno' value={apellidop} onChange={(e) => setapellidop(e.target.value)}/>
-        <br></br><label>Introduce el Apellido Materno</label>
-        <br></br><input id="apellidom" placeholder='Apellido Materno' value={apellidom} onChange={(e) => setapellidom(e.target.value)}/>
-        <br></br><label>Introduce el teléfono</label>
-        <br></br><input id="telefono" placeholder='Teléfono' value={telefono} onChange={(e) => settelefono(e.target.value)}/>
-        <br></br><label>Introduce la red Social</label>
-        <br></br><input id="redesS" placeholder='Redes Sociales' value={redesS} onChange={(e) => setredesS(e.target.value)}/>
-        <br></br><label>Introduce el correo</label>
-        <br></br><input id="email" placeholder='Correo' value={email} onChange={(e) => setemail(e.target.value)}/>
-        <br></br><label>Introduce el tipo de usuario</label>
-        <br></br><input id="tipo" placeholder='Tipo' value={tipo} onChange={(e) => settipo(e.target.value)}/>
-        <br></br><br></br><button onClick={handleUpdateUsr}>Actualizar</button>
+        <br></br><label id="modal-items-text">Usuario: {nombre}</label>
+        <br></br><label>Introduce el nombre</label>
+        <br></br><label id="modal-items-text">Introduce el Nombre</label>
+        <br></br><input id="nombre" className="modal-items2" placeholder='Nombre' value={nombre} onChange={(e) => setnombre(e.target.value)}/>
+        <br></br><label id="modal-items-text">Introduce el Apellido Paterno</label>
+        <br></br><input id="apellidop" className="modal-items2" placeholder='Apellido Paterno' value={apellidop} onChange={(e) => setapellidop(e.target.value)}/>
+        <br></br><label id="modal-items-text">Introduce el Apellido Materno</label>
+        <br></br><input id="apellidom"  className="modal-items2" placeholder='Apellido Materno' value={apellidom} onChange={(e) => setapellidom(e.target.value)}/>
+        <br></br><label id="modal-items-text">Introduce el teléfono</label>
+        <br></br><input id="telefono" className="modal-items2" placeholder='Teléfono' value={telefono} onChange={(e) => settelefono(e.target.value)}/>
+        <br></br><label id="modal-items-text">Introduce la red Social</label>
+        <br></br><input id="redesS" className="modal-items2" placeholder='Redes Sociales' value={redesS} onChange={(e) => setredesS(e.target.value)}/>
+        <br></br><label id="modal-items-text">Introduce el correo</label>
+        <br></br><input id="email"  className="modal-items2" placeholder='Correo' value={email} onChange={(e) => setemail(e.target.value)}/>
+        <br></br><label id="modal-items-text">Introduce el tipo de usuario</label>
+        <br></br><input id="tipo"  className="modal-items2" placeholder='Tipo' value={tipo} onChange={(e) => settipo(e.target.value)}/>
+        <br></br><br></br>
+        <div style={{display:'flex' ,flexDirection:'row'}}><button id='button' onClick={handleUpdateUsr}>Actualizar</button>
+        <button id='button' onClick={handleDeleteUsr}>Borrar</button></div>
+        
         </div>
 
-        <div>
-                <button onClick={() => setVisible(true)}>Editar</button>
-                <button onClick={handleDeleteUsr}>Borrar</button>
-        </div>
 
     </div>
   )
