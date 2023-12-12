@@ -44,10 +44,10 @@ Si desea probar su proyecto localmente, puede utilizar los siguientes comandos:
 
 ```bash
 # Inicia la réplica, ejecutándose en segundo plano.
-inicio dfx --fondo
+dfx start --background
 
 # Implementa tus contenedores en la réplica y genera tu interfaz sincera
-implementar dfx
+dfx deploy
 ```
 
 Una vez que se complete el trabajo, su aplicación estará disponible en `http://localhost:4943?canisterId={asset_canister_id}`.
@@ -76,3 +76,15 @@ Si aloja código de interfaz en algún lugar sin utilizar DFX, es posible que de
 - utilice su propio método preferido para reemplazar `process.env.DFX_NETWORK` en las declaraciones generadas automáticamente
    - Configurar `contenedores -> {asset_canister_id} -> declaraciones -> env_override en una cadena` en `dfx.json` reemplazará `process.env.DFX_NETWORK` con la cadena en las declaraciones generadas automáticamente
 - Escribe tu propio constructor `createActor`
+
+
+> [!IMPORTANT]
+> Para el correcto funcionamiento de la plataforma en desarrollo es necesario Instalar estas librerias:
+> - npm install react-router-dom
+> - npm install react react-dom
+> - npm install reactstrap
+> - npm install react-modal
+> - npm install react-icons
+> - npm install bootstrap
+> - npm install style-loader css-loader --save-dev
+> - npm install styled-components
